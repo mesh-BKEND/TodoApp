@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Orbitron:wght@400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="introduction">
+      <h1>Welcome to the todo app</h1>
+      <p>Specifiy your work inside a project card</p>
+    </div>
+
+    <div class="project-buttons">
+      <button id="projectBtn">Add a project</button>
+    </div>
+
+    <div class="projects"></div>
+    <div class="form-field">
+      <form>
+        <div class="field">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" />
+        </div>
+        <div class="field">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="field">
+          <label for="dueDate">Due Date:</label>
+          <input type="date" id="dueDate" name="dueDate" />
+        </div>
+        <div class="field">
+          <label for="priority">Priority</label>
+          <input type="text" id="priority" name="priority" />
+        </div>
+        <div>
+          <button type="submit" id="submitBtn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
