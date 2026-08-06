@@ -19,17 +19,43 @@ function projectBody() {
   const projectTitle = document.createElement("h2");
   projectTitle.textContent = `project ${projectNumber++}`;
   const projectList = document.createElement("ul");
+
   let listed = [];
-  projects.push(listed);
-  const todoBtn = createButtons();
+
+  const todoBtn = createButtons(projectList);
   project.append(projectTitle, projectList, todoBtn);
   projectsBody.append(project);
+
+  listed.push(projectList);
+  projects.push(listed);
+
+  console.log(listed);
   console.log(projects);
+
+  // getValues(listed);
+  // console.log(storeInLocalStorage(listed));
   return projectList;
 }
 
+//function to get the values of the listed
+// function getValues(listed) {
+//   let List = document.querySelector("li");
+
+//   let myList = Array.from(List).map((list) => list.textContent);
+//   console.log(myList);
+//   listed.forEach((list) => {
+//     const items = list.children;
+//     for (let i = 0; i < items.length; i++) {
+//       console.log(items[i].textContent);
+//     }
+//   });
+// }
+//function tot store the projects in local storage
+// function storeInLocalStorage(projects) {
+//   return projects;
+// }
 //function to create buttons for the project
-function createButtons() {
+function createButtons(taskList) {
   const todoBtns = document.createElement("div");
   const todoBtn = document.createElement("button");
   todoBtn.className = "add-todo";
@@ -41,9 +67,9 @@ function createButtons() {
 
   todoBtns.append(todoBtn, deleteTodo);
 
-  //buttons functionality
+  //buttons functionality  console.log(todos);
   todoBtn.addEventListener("click", () => {
-    const todoItem = createTodoItem();
+    const todoItem = createTodoItem(taskList);
   });
 
   deleteTodo.addEventListener("click", () => {
@@ -61,11 +87,8 @@ class todoItem {
   }
 }
 
-const todos = [];
-
-let body = projectBody();
 //function to create a todoItem
-function createTodoItem(body) {
+function createTodoItem(bodyList) {
   const title = window.prompt("Enter your todo Title");
   const description = window.prompt("Describe your todo");
   const dueDate = window.prompt("What is the Due Date");
@@ -75,9 +98,7 @@ function createTodoItem(body) {
 
   const todo_list = document.createElement("li");
   todo_list.textContent = `${title}, ${description}, ${dueDate}, ${priority}`;
-  todos.push(item);
-  console.log(todos);
-  return todo_list;
+  bodyList.append(todo_list);
+  console.log(bodyList);
+  return item;
 }
-
-console.log(body);
