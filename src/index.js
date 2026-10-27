@@ -1,104 +1,114 @@
 import "./styles.css";
 
+const todoForm = document.querySelector("form");
 const projectBtn = document.querySelector("#projectBtn");
-const projectsBody = document.querySelector(".projects");
-const projects = [];
-let projectNumber = 0;
+const STORAGE_KEY = "todoItems";
 
-//button to create a project
-projectBtn.addEventListener("click", (e) => {
+//check of todoForm exists and then sets it to display = none
+if (todoForm) {
+  todoForm.style.display = "none";
+}
+
+//function to display the form when clicked
+function displayForm() {
+  if (!todoForm) return;
+
+  todoForm.style.display = todoForm.style.display === "none" ? "block" : "none";
+}
+
+//checks for the projectBtn if it does exist
+if (projectBtn) {
+  projectBtn.addEventListener("click", displayForm);
+}
+
+function item(title, description, date, priority) {
+  this.title = title;
+  this.description = description;
+  this.date = date;
+  this.priority = priority;
+}
+
+//convert the string values stored in local storage and convert them into javascript values
+const myList = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+//function to save the list items into the local storage
+function saveList() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(myList));
+}
+
+//function to create a new list item and saving it in the local storage
+todoForm?.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const projectDiv = projectBody();
-  // const todoList = projectDiv.children[1];
+  const formData = new FormData(e.target);
+  const newItem = new item(
+    formData.get("title"),
+    formData.get("description"),
+    formData.get("dueDate"),
+    formData.get("priority"),
+  );
+
+  myList.push(newItem);
+  saveList();
+
+  console.log(myList);
+
+  e.target.reset();
 });
 
-//function for creating a project body
-function projectBody() {
-  const project = document.createElement("div");
-  const projectTitle = document.createElement("h2");
-  projectTitle.textContent = `project ${projectNumber++}`;
-  const projectList = document.createElement("ul");
+const projects = document.querySelector(".projects")
+const displayButton = document.querySelector("#displayBtn");
+//getting the values and displaying them
+function displayItems() {
+  myList.forEach((item) => {
 
-  let listed = [];
+    const itemContainer = document.createElement("div");
+    itemContainer.classList.add("item-container");
 
-  const todoBtn = createButtons(projectList);
-  project.append(projectTitle, projectList, todoBtn);
-  projectsBody.append(project);
+    const titleElement = document.createElement("h3");
+    titleElement.textContent = `Title: ${item.title}`;
 
-  listed.push(projectList);
-  projects.push(listed);
+    const descriptionElement = document.createElement("p");
+    descriptionElement.textContent = `Descriptions: ${item.description}`;
 
-  console.log(listed);
-  console.log(projects);
+    const dateElement = document.createElement("p");
+    dateElement.textContent = `Due Date: ${item.date}`;
 
-  // getValues(listed);
-  // console.log(storeInLocalStorage(listed));
-  return projectList;
-}
+    const priorityElement = document.createElement("p");
+    priorityElement.textContent = `Priority: ${item.priority}`;
 
-//function to get the values of the listed
-// function getValues(listed) {
-//   let List = document.querySelector("li");
+    const deleteitemButton = document.createElement("button");
+    deleteitemButton.textContent = "Delete";
 
-//   let myList = Array.from(List).map((list) => list.textContent);
-//   console.log(myList);
-//   listed.forEach((list) => {
-//     const items = list.children;
-//     for (let i = 0; i < items.length; i++) {
-//       console.log(items[i].textContent);
-//     }
-//   });
-// }
-//function tot store the projects in local storage
-// function storeInLocalStorage(projects) {
-//   return projects;
-// }
-//function to create buttons for the project
-function createButtons(taskList) {
-  const todoBtns = document.createElement("div");
-  const todoBtn = document.createElement("button");
-  todoBtn.className = "add-todo";
-  const deleteTodo = document.createElement("button");
-  todoBtn.className = "delete-todo";
+    deleteitemButton.addEventListener("click", () => {
+      const index = myList.indexOf(item);
 
-  todoBtn.textContent = "Add a todo";
-  deleteTodo.textContent = "Delete todo";
+      //condition checking for the deletion
 
-  todoBtns.append(todoBtn, deleteTodo);
+      if (index > -1) {
+        myList.splice(index, 1);
+        saveList();
+        itemContainer.remove();
+      }
 
-  //buttons functionality  console.log(todos);
-  todoBtn.addEventListener("click", () => {
-    const todoItem = createTodoItem(taskList);
+      
+    });
+    if (item.priority === "High") {
+      priorityElement.style.color = "red";
+    } else if (item.priority === "Medium") {
+      priorityElement.style.color = "orange";
+    } else {
+      priorityElement.style.color = "green";
+    }
+
+    itemContainer.appendChild(titleElement);
+    itemContainer.appendChild(descriptionElement);
+    itemContainer.appendChild(dateElement);
+    itemContainer.appendChild(priorityElement);
+    itemContainer.appendChild(deleteitemButton);
+
+    projects.appendChild(itemContainer);
   });
-
-  deleteTodo.addEventListener("click", () => {
-    console.log("Deleting a todo .....");
-  });
-  return todoBtns;
 }
 
-//todo object
-class todoItem {
-  constructor(title, description, dueDate, priority) {
-    ((this.title = title), (this.description = description));
-    this.dueDate = dueDate;
-    this.priority = priority;
-  }
-}
-
-//function to create a todoItem
-function createTodoItem(bodyList) {
-  const title = window.prompt("Enter your todo Title");
-  const description = window.prompt("Describe your todo");
-  const dueDate = window.prompt("What is the Due Date");
-  const priority = window.prompt("what is your todo priority");
-
-  const item = new todoItem(title, description, dueDate, priority);
-
-  const todo_list = document.createElement("li");
-  todo_list.textContent = `${title}, ${description}, ${dueDate}, ${priority}`;
-  bodyList.append(todo_list);
-  console.log(bodyList);
-  return item;
-}
+displayButton?.addEventListener("click", displayItems);

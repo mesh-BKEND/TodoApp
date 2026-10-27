@@ -15,10 +15,10 @@
     <div class="introduction">
       <h1>Welcome to the todo app</h1>
       <p>Specifiy your work inside a project card</p>
-    </div>
-
-    <div class="project-buttons">
-      <button id="projectBtn">Add a project</button>
+      <div class="project-buttons">
+        <button id="projectBtn">Add a project</button>
+        <button id="displayBtn">Display all projects</button>
+      </div>
     </div>
 
     <div class="projects"></div>
@@ -30,7 +30,12 @@
         </div>
         <div class="field">
           <label for="description">Description:</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea
+            id="description"
+            name="description"
+            cols="30"
+            rows="6"
+          ></textarea>
         </div>
         <div class="field">
           <label for="dueDate">Due Date:</label>
@@ -38,7 +43,11 @@
         </div>
         <div class="field">
           <label for="priority">Priority</label>
-          <input type="text" id="priority" name="priority" />
+          <select name="priority" id="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
         </div>
         <div>
           <button type="submit" id="submitBtn">Submit</button>

@@ -10,15 +10,16 @@
       href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Orbitron:wght@400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-  <script defer src="main.js"></script></head>
+    <script defer src="main.js"></script>
+  </head>
   <body>
     <div class="introduction">
       <h1>Welcome to the todo app</h1>
       <p>Specifiy your work inside a project card</p>
-    </div>
-
-    <div class="project-buttons">
-      <button id="projectBtn">Add a project</button>
+      <div class="project-buttons">
+        <button id="projectBtn">Add a project</button>
+        <button id="deleteProject">Display project</button>
+      </div>
     </div>
 
     <div class="projects"></div>
@@ -38,7 +39,11 @@
         </div>
         <div class="field">
           <label for="priority">Priority</label>
-          <input type="text" id="priority" name="priority" />
+          <select name="priority" id="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
         </div>
         <div>
           <button type="submit" id="submitBtn">Submit</button>

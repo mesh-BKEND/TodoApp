@@ -1,139 +1,96 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap");
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "Roboto", monospace;
-  background: #f5f7fb;
-  color: #1f2937;
+  padding: 0;
+}
+body {
+  padding: 0;
 }
 
+/* introduction header */
 .introduction {
-  background: rgb(166, 166, 209);
+  background-color: #1b1010;
+  padding: 2rem;
   text-align: center;
-  width: 100%;
-  display: inline-block;
-}
-
-.introduction p {
-  font-size: 1rem;
-  font-family: "Roboto", monospace;
-  font-weight: 400;
+  color: ghostwhite;
+  margin: 0 auto;
 }
 
 .project-buttons {
-  padding: 1rem;
-  text-align: center;
-  button {
-    padding: 10px 20px;
-    border: 1px solid gray;
-    margin-left: 1rem;
-    font-weight: bold;
-    background: black;
-    color: white;
-    border-radius: 18px;
-  }
-}
-
-.projects {
-  display: grid;
+  display: flex;
+  justify-content: center;
   gap: 1rem;
+  margin-top: 1rem;
 
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
-}
-.project-card {
-  padding: 1rem;
-  border: 1px solid black;
-  border-radius: 20px;
-  text-align: center;
-}
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-weight: 500;
+    cursor: pointer;
+  }
 
-.form-field {
-  display: none;
-}
-
-.form-field.visible {
-  display: block;
+  button:hover {
+    background-color: #e0e0e0;
+  }
 }
 
 form {
+  border: 2px solid red;
   padding: 1rem;
-  display: inline-block;
-  border: 1px solid black;
-  width: 50%;
-  box-shadow:
-    8px 8px 15px black,
-    -8px -8px 15px black;
-  margin: 0 auto;
-  background: rgb(241, 239, 239);
-  .field {
-    margin-bottom: 1.5rem;
-    padding: 0.5rem;
+  color: white;
+  background: #7c7373;
+  div {
     display: flex;
+    border-radius: 10px;
+    margin: 1rem;
+    gap: 1rem;
     justify-content: start;
     align-items: center;
-    gap: 1rem;
+    padding: 1rem;
+    font-weight: bold;
+    color: aqua;
+  }
 
-    label {
+  input {
+    padding: 0.75rem;
+    font-weight: bold;
+    font-size: 1rem;
+    color: darkgreen;
+  }
+  select {
+    padding: 10px;
+    color: black;
+    font-weight: bold;
+
+    option {
       font-weight: bold;
-      font-size: 1.3rem;
-    }
-
-    input {
-      padding: 0.3rem;
-      font-size: 1.2rem;
-      width: 100%;
-      font-weight: bold;
-      color: black;
-    }
-
-    textarea {
-      width: 100%;
+      font-size: 0.95rem;
+      color: blue;
+      font-family: "Roboto Mono";
     }
   }
-}
-.todoBtn {
-  background: black;
-  color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  font-weight: bolder;
-  margin: 1rem;
+
+  button {
+    text-align: center;
+    border: 1px solid black;
+    color: black;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 1rem;
+  }
 }
 
-/* todos */
-.item {
-  padding: 0 1rem;
-  background-color: blue;
-  display: inline-block;
-}
-.todos {
-  color: #1f2937;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 0;
-  list-style: none;
-  margin: 1rem 0 0;
-}
-
-.todo-item {
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.todo-item strong {
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.todo-item p {
-  margin: 0.25rem 0;
-}
-
-.todo-item span {
-  display: block;
-  font-size: 0.9rem;
+.projects{
+  display:grid;
+  margin:1rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap:calc(1rem + 1vw);
+  div{
+    padding:1rem;
+    border:1px solid black;
+  }
 }
